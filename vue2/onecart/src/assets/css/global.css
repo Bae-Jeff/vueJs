@@ -1,0 +1,72 @@
+.van-nav-bar .van-icon {
+    color: #555555;
+    font-size: 22px;
+}
+
+.van-nav-bar__right .van-icon {
+    margin-left: 10px;
+}
+
+.inset {
+    margin: 0 16px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.loading-overlay {
+    z-index: 3;
+    background: #0000002b;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.pad-top {
+    margin-top: 40px;
+}
+
+.pad-bottom {
+    margin-bottom: 60px;
+}
+
+.loading-overlay .loading-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.loading-overlay .loading-content .block {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+
+.van-swipe__indicators {
+    right: 0;
+    top: 10px;
+    left: auto;
+}
+
+.van-swipe__indicator,
+.van-swipe__indicator.van-swipe__indicator--active {
+    width: 15px;
+    border-radius: 2px;
+    height: 4px;
+    background: #ea6746;
+}

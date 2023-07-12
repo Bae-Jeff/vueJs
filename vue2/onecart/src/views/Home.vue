@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <van-nav-bar @click-left="onClickLeft" @click-right="onClickRight">
+    <van-nav-bar class="sticky" @click-left="onClickLeft" @click-right="onClickRight">
       <template #title>
         <img src="../assets/logo-header.png" class="nav-bar-logo-image">
       </template>
@@ -250,9 +250,9 @@ export default {
   margin-bottom: 23px;
   position: sticky;
   z-index: 111;
-  top: 0px;
+  top: 40px;
   background: #fff;
-  padding-top: 46px;
+  padding-top: 5px;
   padding-bottom: 10px;
 }
 

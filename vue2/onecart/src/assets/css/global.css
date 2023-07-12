@@ -18,6 +18,12 @@
     background: #0000002b;
 }
 
+.van-nav-bar.sticky {
+    position: sticky;
+    top: 40px;
+    z-index: 2;
+}
+
 .align-left {
     text-align: left;
 }
@@ -69,4 +75,12 @@
     border-radius: 2px;
     height: 4px;
     background: #ea6746;
+}
+
+.van-nav-bar--safe-area-inset-top {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }

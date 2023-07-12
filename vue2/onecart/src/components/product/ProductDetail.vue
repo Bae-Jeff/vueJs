@@ -2,7 +2,6 @@
     <div class="product-detail">
         <van-nav-bar class="sticky" title="상품상세" @click-left="$router.go(-1);" left-text="" left-arrow>
             <template #right>
-                <van-icon name="like-o" />
                 <van-icon name="share-o" />
             </template>
         </van-nav-bar>
@@ -32,14 +31,18 @@
         </div>
 
         <van-tabs v-model="activeBody" sticky :offset-top="80" class="product-description inset pad-bottom">
-            <van-tab title="상세설명" class="inset">
+            <van-tab title="상세설명">
                 <div>
                     <img src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
                     <img src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
                     <img src="https://img01.yzcdn.cn/vant/apple-1.jpg" />
                 </div>
             </van-tab>
-            <van-tab title="리뷰" class="inset">상품리뷰</van-tab>
+            <van-tab title="리뷰">
+                <div class="product-review-wrap">
+                    <reviewRow v-for="i in 10" :review="review" :key="i"></reviewRow>
+                </div>
+            </van-tab>
         </van-tabs>
         <van-goods-action safe-area-inset-bottom>
             <van-goods-action-icon icon="chat-o" text="문의" />
@@ -50,10 +53,22 @@
     </div>
 </template>
 <script>
+import reviewRow from './reviewRow.vue';
 export default {
     name: 'ProductDetail',
     data() {
         return {
+            review: {
+                title: "너무 좋아요~ ! 강추",
+                content: "처음 구매했는데 배송도 빠르고 품질도 너무 좋아요. 다음에 또 구매할거 같아요. 대박나세요.",
+                star: 5,
+                productName: "고속무선충전기",
+                productImage: "",
+                optionName: "길이: 2m, 색상:레드",
+                optionImage: "https://img01.yzcdn.cn/vant/apple-1.jpg",
+                createUser: "강하나",
+                createDate: "2023-07-13"
+            },
             activeBody: 0,
             showOpionPicker: false,
             images: [
@@ -63,7 +78,7 @@ export default {
         }
     },
     components: {
-
+        reviewRow
     },
     methods: {
         selectOption() {

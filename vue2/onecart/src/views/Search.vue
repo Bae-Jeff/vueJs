@@ -1,6 +1,6 @@
 <template>
     <div class="search-from">
-        sdfsdfsdf
+        검색창
     </div>
 </template>
 <script>

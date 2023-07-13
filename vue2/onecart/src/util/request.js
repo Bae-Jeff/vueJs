@@ -7,7 +7,7 @@ const request = axios.create({
 
 request.interceptors.request.use(
     config => {
-        config.headers.token = 'test'
+        config.headers.token = 'This is user login Token__'
         return config
     }, error => {
         Toast.fail(error.message)

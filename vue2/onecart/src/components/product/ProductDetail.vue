@@ -90,8 +90,9 @@ export default {
         this.$store.commit('showLoading');
         console.log(this.productNo);
 
-        this.$request.get('/api/data').then(response => {
-            console.log(response)
+
+        this.$request.get('/api/product/getProductInfo?productNo=' + this.productNo).then(response => {
+            console.log(response.data)
         }).catch(error => {
             console.error(error)
         })

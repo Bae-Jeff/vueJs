@@ -31,7 +31,7 @@
         <div class="product-list">
           <van-grid :gutter="10" :column-num="2">
             <van-grid-item v-for="(item, index) in cate.cateItems.data" :key="index">
-              <product-block :product="item.data" />
+              <product-block :product="item" />
             </van-grid-item>
           </van-grid>
         </div>
@@ -62,46 +62,54 @@ export default {
             searchKey: "",
             data: [
               {
-                productNo: 1,
+                productNo: 10,
+                productName: "가나다라마바사아",
+                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 12345,
+              },
+              {
+                productNo: 10,
+                productName: "가나다라마바사아",
+                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 32000,
+              },
+              {
+                productNo: 10,
+                productName: "가나다라마바사아",
+                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 32000,
+              },
+              {
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
               },
               {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 32000,
               },
               {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              },
-              {
-                productNo: 1,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              },
-              {
-                productNo: 1,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              },
-              {
-                productNo: 1,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 32000,
               }, {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 32000,
               }, {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 32000,
               }, {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
+                productPrice: 32000,
               },
 
             ]
@@ -118,7 +126,7 @@ export default {
             searchKey: "",
             data: [
               {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
               }
@@ -136,7 +144,7 @@ export default {
             searchKey: "",
             data: [
               {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
               }
@@ -154,7 +162,7 @@ export default {
             searchKey: "",
             data: [
               {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
               }
@@ -173,7 +181,7 @@ export default {
             searchKey: "",
             data: [
               {
-                productNo: 1,
+                productNo: 10,
                 productName: "가나다라마바사아",
                 productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
               }

@@ -2,12 +2,12 @@
   <div class="product-row">
     <div class="product-image">
       <van-icon name="like-o" class="prorudct-ctrl-like" @click="likeProduct(11)" />
-      <img src="https://img01.yzcdn.cn/vant/apple-2.jpg" @click="showDetail(11)">
+      <img :src="product.productImage" @click="showDetail(11)">
     </div>
-    <div class="product-title" @click="showDetail(productNo)">가나다라마바사아 자차 카타파하 가나다라 마바사아자차카타파하 12341231</div>
+    <div class="product-title" @click="showDetail()">{{ product.productName }}</div>
     <van-row>
       <van-col span="12" class="product-topics"></van-col>
-      <van-col span="12" class="product-price align-right">23,000</van-col>
+      <van-col span="12" class="product-price align-right">{{ product.productPrice }}</van-col>
     </van-row>
   </div>
 </template>
@@ -16,18 +16,18 @@
 export default {
   name: "ProductBlock",
   props: {
-    product: Array,
+    product: Object,
   },
   methods: {
-    async showDetail(productNo) {
-      this.$router.push("/product/" + productNo);
+    showDetail() {
+      this.$router.push("/product/" + this.product.productNo);
     },
     likeProduct() {
 
     }
   },
-  onMounted() {
-    console.log(this.item)
+  created() {
+    // console.log(this)
   },
 };
 </script>

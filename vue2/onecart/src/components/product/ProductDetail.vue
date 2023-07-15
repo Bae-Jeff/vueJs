@@ -87,19 +87,17 @@ export default {
     },
     created() {
         // const that = this;
-        this.$store.commit('showLoading');
+        this.$store.commit('isLoading', true);
         console.log(this.productNo);
-
-
-        this.$request.get('/api/product/getProductInfo?productNo=' + this.productNo).then(response => {
-            console.log(response.data)
-        }).catch(error => {
-            console.error(error)
+        this.$request({
+            method: 'GET',
+            url: '/api/product/getProductInfo?productNo=' + this.productNo,
         })
-        // this.$store.commit('hideLoading');
-        // setTimeout(function () {
-        //     that.$store.state.isLoading = false;
-        // }, 1000)
+            .then(response => {
+                const { bool, data, msg } = response;
+                console.log(bool, data, msg);
+            })
+
     },
     computed: {
         productNo() {

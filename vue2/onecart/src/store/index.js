@@ -8,16 +8,18 @@ export default new Vuex.Store({
     isLoading: false
   },
   mutations: {
-    showLoading() {
-      this.state.isLoading = true;
-      var that = this;
-      setTimeout(function () {
-        that.state.isLoading = false;
-        Toast.fail('서버 통신 에러')
-      }, 3000);
-    },
-    hideLoading() {
-      this.state.isLoading = false;
+    isLoading(state, show) {
+      // console.log(show);
+      state.isLoading = show;
+      if (show) {
+        var that = this;
+        setTimeout(function () {
+          if (that.state.isLoading) {
+            that.state.isLoading = false;
+            Toast.fail('서버 통신 에러')
+          }
+        }, 10000);
+      }
     }
   },
   actions: {

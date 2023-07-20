@@ -4,11 +4,15 @@
       <van-icon name="like-o" class="prorudct-ctrl-like" @click="likeProduct(11)" />
       <img :src="product.productImage" @click="showDetail(11)">
     </div>
-    <div class="product-title" @click="showDetail()">{{ product.productName }}</div>
-    <van-row>
-      <van-col span="12" class="product-topics"></van-col>
-      <van-col span="12" class="product-price align-right">{{ product.productPrice }}</van-col>
-    </van-row>
+    <div class="product-card-body">
+      <div class="product-title" @click="showDetail()">{{ product.productName }}</div>
+      <van-row>
+        <van-col span="12" class="product-topics"></van-col>
+        <van-col span="12" class="product-price align-right">{{ $tools.numberFormat(product.productPrice, true)
+        }}</van-col>
+      </van-row>
+    </div>
+
   </div>
 </template>
 
@@ -22,6 +26,10 @@ export default {
     showDetail() {
       this.$router.push("/product/" + this.product.productNo);
     },
+    // numberFormat(number) {
+    //   console.log(this.$tools);
+    //   return this.$tools.numberFormat(number);
+    // },
     likeProduct() {
 
     }
@@ -34,6 +42,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.product-row {
+  width: 100%;
+}
+
+.product-card-body {
+  padding: 0px 8px 10px 8px;
+}
+
 .product-image img {
   width: 100%;
   object-fit: cover;
@@ -44,10 +60,15 @@ export default {
 .prorudct-ctrl-like {
   font-size: 20px;
   font-weight: 800;
+  height: 23px;
+  width: 23px;
+  line-height: 23px;
+  text-align: center;
+  vertical-align: middle;
   position: absolute;
   right: 10px;
   top: 10px;
-  background: #ffffff;
+  background: #ffffffd6;
   padding: 4px;
   border-radius: 2px;
   box-shadow: 0px 0px 8px #00000030;
@@ -55,7 +76,7 @@ export default {
 
 .product-title {
   text-align: left;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 14px;
   height: 40px;
   line-height: 20px;

@@ -3,8 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import request from './util/request'
+import { numberFormat } from './util/tools'
 
 Vue.prototype.$request = request
+Vue.prototype.$tools = {
+  numberFormat
+}
 import {
   NavBar,
   Button,
@@ -27,7 +31,9 @@ import {
   GoodsActionIcon,
   GoodsActionButton,
   Overlay,
-  Sku
+  ActionSheet,
+  Empty,
+  Stepper
 } from 'vant';
 import "vant/lib/index.css";
 import "@/assets/css/global.css";
@@ -51,7 +57,9 @@ Vue.use(GoodsAction);
 Vue.use(GoodsActionIcon);
 Vue.use(GoodsActionButton);
 Vue.use(Overlay);
-Vue.use(Sku);
+Vue.use(ActionSheet);
+Vue.use(Empty);
+Vue.use(Stepper);
 // import koKR from 'vant/es/locale/lang/ko-KR'; 
 // Locale.use('ko-KR', koKR);
 

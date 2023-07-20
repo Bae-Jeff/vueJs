@@ -10,7 +10,7 @@
 .inset {
     margin: 0 16px;
     overflow: hidden;
-    border-radius: 8px;
+    /* border-radius: 8px; */
 }
 
 .loading-overlay {
@@ -64,9 +64,9 @@
 
 
 .van-swipe__indicators {
-    right: 0;
-    top: 10px;
-    left: auto;
+    position: relative;
+    height: 15px;
+    bottom: auto;
 }
 
 .van-swipe__indicator,

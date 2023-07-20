@@ -10,30 +10,40 @@
         </router-link>
       </template>
     </van-nav-bar>
-    <van-swipe :autoplay="30000" class="main-slide">
-      <van-swipe-item v-for="(image, index) in images" :key="index">
-        <img v-lazy="image" class="main-swipe-image" />
+    <van-swipe :autoplay="30000" class="main-slide inset">
+      <van-swipe-item v-for="(slider, index) in sliders" :key="index">
+        <div v-if="slider.bannerLink">
+          <a href="slider.bannerLink">
+            <img v-lazy="slider.bannerImageM" class="main-swipe-image" />
+          </a>
+        </div>
+        <div v-else>
+          <img v-lazy="slider.bannerImageM" class="main-swipe-image" />
+        </div>
+
       </van-swipe-item>
     </van-swipe>
 
     <!-- <van-sticky :offset-top="50"> -->
-    <van-tabs v-model="cateActive" class="main-cate-wrap pad-bottom" safe-area-inset-bottom>
-      <van-tab v-for="(cate, index) in  category " :key="index">
+    <van-tabs v-model="categoryActive" class="main-category-wrap pad-bottom" safe-area-inset-bottom>
+      <van-tab v-for="(category, index) in  categories " :key="index">
         <template #title>
-          <div class="cate-icon" v-if="cate.cateIcon">
-            <van-icon :name="cate.cateIcon" />
+          <div class="category-icon" v-if="category.categoryIcon">
+            <van-icon :name="category.categoryIcon" />
           </div>
-          <div class="cate-icon" v-if="cate.cateImage">
-            <img :src="item.cateImage">
+          <div class="category-icon" v-if="category.categoryImage">
+            <img :src="item.categoryImage">
           </div>
-          <div class="cate-title">{{ cate.cateName }}</div>
+          <div class="category-title">{{ category.categoryAppName }}</div>
         </template>
         <div class="product-list">
-          <van-grid :gutter="10" :column-num="2">
-            <van-grid-item v-for="(item, index) in cate.cateItems.data" :key="index">
+          <van-grid :gutter="10" :column-num="2" v-if="category.products.data">
+            <van-grid-item v-for="(item, index) in category.products.data" :key="index" class="product-card">
               <product-block :product="item" />
             </van-grid-item>
           </van-grid>
+          <van-empty v-if="category.products.data.length < 1" class="custom-image" image="search"
+            description="현재 카테고리에 상품이 없습니다." />
         </div>
       </van-tab>
     </van-tabs>
@@ -49,152 +59,23 @@ export default {
   components: { ProductBlock },
   data() {
     return {
-      cateActive: 0,
-      category: [
-        {
-          cateName: "휴대폰",
-          cateCode: "abcdef",
-          cateImage: "",
-          cateIcon: 'graphic',
-          cateItems: {
-            page: 1,
-            limit: 9,
-            searchKey: "",
-            data: [
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 12345,
-              },
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 32000,
-              },
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 32000,
-              },
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              },
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 32000,
-              },
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 32000,
-              }, {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 32000,
-              }, {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 32000,
-              }, {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                productPrice: 32000,
-              },
-
-            ]
-          }
-        },
-        {
-          cateName: "자동차",
-          cateCode: "abcdef",
-          cateImage: "",
-          cateIcon: 'logistics',
-          cateItems: {
-            page: 1,
-            limit: 9,
-            searchKey: "",
-            data: [
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              }
-            ]
-          }
-        },
-        {
-          cateName: "생활",
-          cateCode: "abcdef",
-          cateImage: "",
-          cateIcon: 'flower-o',
-          cateItems: {
-            page: 1,
-            limit: 9,
-            searchKey: "",
-            data: [
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              }
-            ]
-          }
-        },
-        {
-          cateName: "레저",
-          cateCode: "abcdef",
-          cateImage: "",
-          cateIcon: 'fire-o',
-          cateItems: {
-            page: 1,
-            limit: 9,
-            searchKey: "",
-            data: [
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              }
-            ]
-          }
-        },
-
-        {
-          cateName: "수입식품",
-          cateCode: "abcdef",
-          cateImage: "",
-          cateIcon: 'birthday-cake-o',
-          cateItems: {
-            page: 1,
-            limit: 9,
-            searchKey: "",
-            data: [
-              {
-                productNo: 10,
-                productName: "가나다라마바사아",
-                productImage: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-              }
-            ]
-          }
-        },
-      ],
+      categoryActive: 0,
+      categories: [],
       active: 0,
-      images: [
-        'https://img01.yzcdn.cn/vant/apple-1.jpg',
-        'https://img01.yzcdn.cn/vant/apple-2.jpg',
-      ],
+      sliders: [],
     };
+  },
+  created() {
+    this.$request({
+      method: 'GET',
+      url: '/api/main',
+    })
+      .then(response => {
+        const { bool, data, msg } = response;
+        console.log(bool, data, msg);
+        this.sliders = data.slider
+        this.categories = data.category
+      })
   },
   methods: {
     showSearchForm() {
@@ -226,23 +107,29 @@ export default {
 
 
 .main-swipe-image {
-  height: 180px;
+  width: 100%;
   object-fit: cover;
   border-radius: 5px;
+  height: 200px;
+  object-position: center;
 }
 
 
-.main-cate-wrap .cate-icon {
+.main-category-wrap .category-icon {
   display: grid;
   height: 45px;
 }
 
-.main-cate-wrap .cate-title {
+.main-category-wrap .category-title {
   font-size: 13px;
   margin-top: 4px;
 }
 
-::v-deep .cate-icon .van-icon {
+::v-deep .product-card .van-grid-item__content {
+  padding: 0px;
+}
+
+::v-deep .category-icon .van-icon {
   display: inline-block;
   background: #f0f0f0;
   width: 42px;
@@ -252,7 +139,7 @@ export default {
   font-size: 30px;
 }
 
-::v-deep .main-cate-wrap .van-tabs__wrap {
+::v-deep .main-category-wrap .van-tabs__wrap {
   height: 78px !important;
   margin-top: 6px;
   margin-bottom: 23px;

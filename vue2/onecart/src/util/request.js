@@ -10,6 +10,7 @@ const request = (options) => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }
+        store.commit('isLoading', true);
         console.log(options);
         axios({
             ...options,

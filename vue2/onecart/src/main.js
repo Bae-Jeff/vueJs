@@ -4,7 +4,7 @@ import router from "./router";
 import store from "./store";
 import request from './util/request'
 import { numberFormat } from './util/tools'
-
+// eslint-disable-next-line
 Vue.prototype.$request = request
 Vue.prototype.$tools = {
   numberFormat
@@ -14,7 +14,7 @@ import {
   Button,
   Tabbar,
   TabbarItem,
-  // Locale,
+  Locale,
   Search,
   Icon,
   Swipe,
@@ -33,7 +33,13 @@ import {
   Overlay,
   ActionSheet,
   Empty,
-  Stepper
+  Stepper,
+  Collapse, 
+  CollapseItem,
+  Form,
+  Field,
+  Calendar,
+  DatetimePicker
 } from 'vant';
 import "vant/lib/index.css";
 import "@/assets/css/global.css";
@@ -60,8 +66,16 @@ Vue.use(Overlay);
 Vue.use(ActionSheet);
 Vue.use(Empty);
 Vue.use(Stepper);
+Vue.use(Collapse);
+Vue.use(CollapseItem);
+Vue.use(Form);
+Vue.use(Field);
+Vue.use(Calendar);
+Vue.use(DatetimePicker);
 // import koKR from 'vant/es/locale/lang/ko-KR'; 
 // Locale.use('ko-KR', koKR);
+import ko from 'vant/lib/locale/lang/ko-KR';
+Locale.use('ko-KR', ko);
 
 Vue.config.productionTip = false;
 import ProductDetail from '@/components/product/ProductDetail';

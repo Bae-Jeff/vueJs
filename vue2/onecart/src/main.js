@@ -2,13 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import request from './util/request'
-import { numberFormat } from './util/tools'
+import request from "./util/request";
+import { numberFormat } from "./util/tools";
 // eslint-disable-next-line
 Vue.prototype.$request = request
 Vue.prototype.$tools = {
-  numberFormat
-}
+  numberFormat,
+};
 import {
   NavBar,
   Button,
@@ -34,13 +34,13 @@ import {
   ActionSheet,
   Empty,
   Stepper,
-  Collapse, 
+  Collapse,
   CollapseItem,
   Form,
   Field,
   Calendar,
-  DatetimePicker
-} from 'vant';
+  DatetimePicker,
+} from "vant";
 import "vant/lib/index.css";
 import "@/assets/css/global.css";
 Vue.use(Button);
@@ -72,14 +72,14 @@ Vue.use(Form);
 Vue.use(Field);
 Vue.use(Calendar);
 Vue.use(DatetimePicker);
-// import koKR from 'vant/es/locale/lang/ko-KR'; 
+// import koKR from 'vant/es/locale/lang/ko-KR';
 // Locale.use('ko-KR', koKR);
-import ko from 'vant/lib/locale/lang/ko-KR';
-Locale.use('ko-KR', ko);
+import ko from "vant/lib/locale/lang/ko-KR";
+Locale.use("ko-KR", ko);
 
 Vue.config.productionTip = false;
-import ProductDetail from '@/components/product/ProductDetail';
-Vue.component(ProductDetail.name, ProductDetail)
+import ProductDetail from "@/components/product/ProductDetail";
+Vue.component(ProductDetail.name, ProductDetail);
 // import UserLogin from 'components/UserLogin';
 // Vue.component(UserLogin.name, UserLogin)
 // import SearchForm from '@/components/SearchForm';

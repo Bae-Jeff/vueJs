@@ -84,3 +84,10 @@
     top: 0;
     z-index: 2;
 }
+.van-field__error-message , .van-field--error .van-field__control, .van-field--error .van-field__control::placeholder{
+    color: brown;
+}
+.field-icon {
+    height: 20px;
+    vertical-align: middle;
+}

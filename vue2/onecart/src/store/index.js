@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLoading: false,
+    showLoginPop: false,
     userInfo: {
       isLogin: false,
       token: localStorage.getItem("authToken") || null,
@@ -66,8 +67,25 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit("SET_USER_LOGOUT");
     },
-    setFavorite(option) {
-      console.log(option);
+    setFavorite({ state }, params) {
+      if (state.userInfo.isLogin == false) {
+        state.showLoginPop = true;
+        // Toast.fail("로그인 후 다시 시도하세요.");
+      } else {
+        request({
+          method: "POST",
+          url: "/api/user/setFavorite",
+          data: params,
+        }).then((response) => {
+          const { bool, data, msg } = response;
+          console.log(bool, data, msg);
+          if (bool) {
+            Toast.fail(msg);
+          } else {
+            Toast.fail(msg);
+          }
+        });
+      }
     },
   },
   modules: {},

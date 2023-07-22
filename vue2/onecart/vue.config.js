@@ -16,13 +16,13 @@
 // })
 
 module.exports = {
-    devServer: {
-        proxy: {
-            '/api': {
-                target: 'http://localhost:8081/api',
-                changeOrigin: true,
-                pathRewrite: { '^/api': '' }
-            }
-        }
-    }
-}
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://172.30.1.73:8081/api",
+        changeOrigin: true,
+        pathRewrite: { "^/api": "" },
+      },
+    },
+  },
+};

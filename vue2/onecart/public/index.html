@@ -7,6 +7,13 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
   <link rel="icon" href="<%= BASE_URL %>favicon.png">
+  <script src="//developers.kakao.com/sdk/js/kakao.js"></script>
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script>
+    Kakao.init("cbba18ff86689665390acf90641e4df7");
+    console.log(Kakao)
+  </script>
+ 
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>

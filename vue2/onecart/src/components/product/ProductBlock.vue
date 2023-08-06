@@ -1,18 +1,24 @@
 <template>
   <div class="product-row">
     <div class="product-image">
-      <van-icon name="like-o" class="prorudct-ctrl-like" @click="likeProduct(11)" />
-      <img :src="product.productImage" @click="showDetail(11)">
+      <van-icon
+        name="like-o"
+        class="prorudct-ctrl-like"
+        @click="likeProduct(product.productNo)"
+      />
+      <img :src="product.productImage" @click="showDetail(11)" />
     </div>
     <div class="product-card-body">
-      <div class="product-title" @click="showDetail()">{{ product.productName }}</div>
+      <div class="product-title" @click="showDetail()">
+        {{ product.productName }}
+      </div>
       <van-row>
         <van-col span="12" class="product-topics"></van-col>
-        <van-col span="12" class="product-price align-right">{{ $tools.numberFormat(product.productPrice, true)
+        <van-col span="12" class="product-price align-right">{{
+          $tools.numberFormat(product.productPrice, true)
         }}</van-col>
       </van-row>
     </div>
-
   </div>
 </template>
 
@@ -30,9 +36,12 @@ export default {
     //   console.log(this.$tools);
     //   return this.$tools.numberFormat(number);
     // },
-    likeProduct() {
-
-    }
+    likeProduct(productNo) {
+      this.$store.dispatch("setFavorite", {
+        type: "product",
+        id: productNo,
+      });
+    },
   },
   created() {
     // console.log(this)

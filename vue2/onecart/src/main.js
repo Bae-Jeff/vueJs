@@ -40,6 +40,8 @@ import {
   Field,
   Calendar,
   DatetimePicker,
+  RadioGroup,
+  Radio,
 } from "vant";
 import "vant/lib/index.css";
 import "@/assets/css/global.css";
@@ -72,6 +74,8 @@ Vue.use(Form);
 Vue.use(Field);
 Vue.use(Calendar);
 Vue.use(DatetimePicker);
+Vue.use(RadioGroup);
+Vue.use(Radio);
 // import koKR from 'vant/es/locale/lang/ko-KR';
 // Locale.use('ko-KR', koKR);
 import ko from "vant/lib/locale/lang/ko-KR";

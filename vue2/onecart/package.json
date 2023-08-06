@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "core-js": "^3.6.5",
+    "kakao-sdk": "^3.1.0",
     "vant": "^2.12.54",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
@@ -42,9 +43,7 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": { 
-      
-    }
+    "rules": {}
   },
   "browserslist": [
     "> 1%",

@@ -173,6 +173,42 @@
             </template>
           </van-field>
           <van-field
+            v-model="authFormData.userName"
+            name="이름"
+            label="이름"
+            autocomplete="off"
+            placeholder="이름"
+            ref="userName"
+            class="login-input-label"
+            :rules="[{ required: true, message: '이름을 입력하세요' }]"
+          >
+            <template #label style="text-align: center">
+              <img src="@/assets/icons/user_name.svg" class="field-icon" />
+            </template>
+          </van-field>
+          <van-field
+            name="성별"
+            label="성별"
+            autocomplete="off"
+            placeholder="성별"
+            ref="userGender"
+            class="login-input-label"
+            :rules="[{ required: true, message: '성별을 선택 하세요' }]"
+          >
+            <template #label style="text-align: center">
+              <img src="@/assets/icons/user_gender.svg" class="field-icon" />
+            </template>
+            <template #input>
+              <van-radio-group
+                v-model="authFormData.userGender"
+                direction="horizontal"
+              >
+                <van-radio name="M">남</van-radio>
+                <van-radio name="F">여</van-radio>
+              </van-radio-group>
+            </template>
+          </van-field>
+          <van-field
             v-model="authFormData.confirmCode"
             name="인증코드"
             label="인증코드"
@@ -221,7 +257,7 @@
       ></div>
       <div class="user-sns-area inset">
         <p class="user-sns-title">SNS 로그인</p>
-        <van-row class="user-sns-btn kakao" @click="loginWithKakao">
+        <van-row class="user-sns-btn kakao" @click="snsKakaoLogin">
           <van-col span="6" class="align-right sns-icon">
             <img src="@/assets/icons/icon_kakao.png" class="login-sns-icon" />
           </van-col>
@@ -229,7 +265,7 @@
             ><span class="stick"></span> 카카오 로그인</van-col
           >
         </van-row>
-        <van-row class="user-sns-btn naver">
+        <van-row class="user-sns-btn naver" @click="snsNaverLogin">
           <van-col span="6" class="align-right sns-icon">
             <img src="@/assets/icons/icon_naver.png" class="login-sns-icon" />
           </van-col>
@@ -252,7 +288,6 @@
 
 <script>
 import { Notify, Toast } from "vant";
-import Kakao from "kakao-sdk";
 import ProductBlock from "@/components/product/ProductBlock.vue";
 
 export default {
@@ -335,6 +370,7 @@ export default {
         if (this.$refs.authLoginForm !== undefined) {
           // this.$refs.authLoginForm.reset();
           this.$refs.authLoginForm.resetValidation();
+          console.log(this.authFormData);
         }
       });
     },
@@ -370,15 +406,74 @@ export default {
       this.confirmConfig.isMailSend = true;
       this.confirmCountDown();
     },
-    loginWithKakao() {
-      Kakao.Auth.login({
-        success: function (authObj) {
-          // 로그인 성공 시 처리할 내용을 작성합니다.
-          console.log(authObj);
+    snsNaverLogin() {
+      const naver_id_login = new window.naver_id_login(
+        "Client Id",
+        "callback URL"
+      );
+      const state = naver_id_login.getUniqState();
+      naver_id_login.setButton("white", 2, 40); // 버튼 설정
+      naver_id_login.setState(state);
+      // naver_id_login.setPopup(); // popup 설정을 위한 코드
+      naver_id_login.init_naver_id_login();
+    },
+    snsKakaoLogin() {
+      /*
+      if (window.Kakao.Auth.getAccessToken()) {
+        window.Kakao.API.request({
+          url: "/v1/user/unlink",
+          success: function (response) {
+            console.log(response);
+          },
+          fail: function (error) {
+            console.log(error);
+          },
+        });
+        window.Kakao.Auth.setAccessToken(undefined);
+      }
+*/
+      const that = this;
+      window.Kakao.Auth.login({
+        success: function () {
+          console.log(window.Kakao.Auth.getAccessToken());
+          that
+            .$request({
+              method: "POST",
+              url: "/api/auth/kakao/login",
+              data: {
+                token: window.Kakao.Auth.getAccessToken(),
+              },
+            })
+            .then((response) => {
+              const { bool, data, msg, code } = response;
+
+              if (!bool) {
+                if (code == "AU001") {
+                  that.authFormData = data;
+                  that.authFormData.type = "join";
+                  console.log(that.authFormData);
+                } else {
+                  Toast(msg);
+                }
+              } else if (bool) {
+                that.$store.state.showLoginPop = false;
+              } else {
+                Toast(msg);
+              }
+              console.log(bool, data, msg);
+            });
+          // window.Kakao.API.request({
+          //   url: "/v2/user/me",
+          //   success: async function (response) {
+          //     console.log(response);
+          //   },
+          //   fail: function (error) {
+          //     console.log(error);
+          //   },
+          // });
         },
-        fail: function (err) {
-          // 로그인 실패 시 처리할 내용을 작성합니다.
-          console.log(err);
+        fail: function (error) {
+          console.log(error);
         },
       });
     },
@@ -411,6 +506,7 @@ export default {
 .user-login-pop {
   max-height: 90vh;
   height: 90vh;
+  background: #fff;
 }
 
 .user-login-form,
